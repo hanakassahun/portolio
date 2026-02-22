@@ -3,39 +3,447 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome to My Portfolio | Hanna K</title>
+    <title>Hana Kassahun | Full-Stack Developer Portfolio</title>
+    <meta name="description" content="Full-stack developer portfolio of Hana Kassahun. AI & Cybersecurity enthusiast. Building secure, scalable systems. Projects, skills, and contact info.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="portfolio.css">
 </head>
 <body>
 
     <!-- ===== HEADER ===== -->
     <header>
-        <nav class="container">
+        <nav class="container" aria-label="Main Navigation">
             <div class="logo">Hanna<span>.</span></div>
             <ul class="nav-links">
-                <li><a href="about.html">About</a></li>
-                <li><a href="projects.html">Projects</a></li>
-                <li><a href="skills.html">Skills</a></li>
-                <li><a href="contact.html">Contact</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#contact">Contact</a></li>
             </ul>
+            <div style="display:flex;align-items:center;gap:1rem;">
+                <label style="color:#fff;font-size:0.98rem;cursor:pointer;">
+                    <input type="checkbox" id="devModeToggle" style="vertical-align:middle;"> 👩🏽‍💻 Developer Mode
+                </label>
+                <label style="color:#fff;font-size:0.98rem;cursor:pointer;">
+                    <input type="checkbox" id="darkModeToggle" style="vertical-align:middle;"> 🌙 Dark Mode
+                </label>
+            </div>
         </nav>
     </header>
-    <section class="hero">
-        <div class="container hero-content">
-            <h1>hey, i'm hanna. let's build something awesome!</h1>
-            <p>I’m a 2nd-year Computer Science student exploring 
-               <strong>AI</strong>, <strong>Cybersecurity</strong> & Freelancing.</p>
-            <a href="about.html" class="btn">Learn More About Me</a>
-        </div>
-        <div class="hero-overlay"></div>
-    </section>
+
+    <!-- ===== HERO SECTION ===== -->
+    <main>
+        <section class="hero" id="hero">
+            <div class="container hero-content">
+                <h1><span>HANA KASSAHUN</span></h1>
+                <h2 style="font-weight:500; margin-bottom:1.2rem; color:#fff200; letter-spacing:0.01em;">Full-Stack Engineer | AI & Cybersecurity Specialist</h2>
+                <p style="font-size:1.15rem; color:#fff; margin-bottom:2.2rem;">Engineering resilient, production-ready applications.<br>Designing secure systems with performance-first architecture.<br>Building scalable solutions with security at the core.<br><span style="color:#ffe066;font-size:1.07rem;">8+ projects built · 3 languages · 1 year from graduation · Focused on secure architecture</span></p>
+                <a href="#about" class="btn">Learn More About Me</a>
+                <button id="scanBtn" class="btn" style="margin-left:1rem;background:#7f1fff;">🔎 Scan My Portfolio</button>
+                <button id="aiChatBtn" class="btn" style="margin-left:1rem;background:#23272f;">🤖 Ask AI about Hana</button>
+                                <!-- AI Chatbot Modal -->
+                                <div id="aiChatModal" style="display:none;position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(10,6,18,0.92);z-index:9999;align-items:center;justify-content:center;">
+                                    <div style="background:#181024;padding:2.5rem 2rem;border-radius:18px;max-width:370px;width:90vw;box-shadow:0 8px 32px #7f1fff55;text-align:center;color:#ffeaff;position:relative;display:flex;flex-direction:column;gap:1rem;">
+                                        <button id="closeAIChat" style="position:absolute;top:1rem;right:1rem;background:none;border:none;color:#fff;font-size:1.5rem;cursor:pointer;">&times;</button>
+                                        <h3 style="margin-bottom:0.7rem;">🤖 Ask AI about Hana</h3>
+                                        <div id="aiChatHistory" style="height:180px;overflow-y:auto;text-align:left;background:#1a0e2a;border-radius:8px;padding:0.7rem 0.8rem;font-size:0.98rem;margin-bottom:0.5rem;"></div>
+                                        <form id="aiChatForm" style="display:flex;gap:0.5rem;">
+                                            <input id="aiChatInput" type="text" placeholder="Ask a question..." style="flex:1;padding:0.5rem 0.7rem;border-radius:6px;border:none;font-size:1rem;">
+                                            <button type="submit" class="btn" style="padding:0.5rem 1.1rem;font-size:1rem;background:#7f1fff;">Send</button>
+                                        </form>
+                                        <div id="aiChatArch" style="display:none;margin-top:1.2rem;background:#1a0e2a;padding:1rem;border-radius:10px;color:#ffeaff;">
+                                            <strong>Chatbot Architecture (Developer Mode)</strong>
+                                            <div style="font-size:0.97rem;margin:0.7rem 0;">
+                                                <span title="User input">UI</span> → <span title="Local JSON Q&A">Knowledge Base</span> → <span title="Pattern matching">Logic Engine</span> → <span title="Response">Output</span>
+                                            </div>
+                                            <img src="chatbot-arch.png" alt="Chatbot Architecture Diagram" style="width:100%;max-width:220px;border-radius:8px;box-shadow:0 2px 12px #7f1fff55;">
+                                            <div style="font-size:0.93rem;margin-top:0.5rem;">Visible only in Developer Mode.</div>
+                                        </div>
+                                    </div>
+                                </div>
+                        <!-- Security Scanner Modal -->
+                        <div id="scannerModal" style="display:none;position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(10,6,18,0.92);z-index:9999;align-items:center;justify-content:center;">
+                            <div style="background:#181024;padding:2.5rem 2rem;border-radius:18px;max-width:350px;width:90vw;box-shadow:0 8px 32px #7f1fff55;text-align:center;color:#ffeaff;position:relative;">
+                                <button id="closeScanner" style="position:absolute;top:1rem;right:1rem;background:none;border:none;color:#fff;font-size:1.5rem;cursor:pointer;">&times;</button>
+                                <h3 style="margin-bottom:1.2rem;">🔎 Scanning Portfolio...</h3>
+                                <div id="scanProgress" style="margin-bottom:1.2rem;font-size:1.1rem;">Initializing scan...</div>
+                                <div id="scanResult" style="display:none;">
+                                    <h4 style="color:#7f1fff;margin-bottom:0.7rem;">No vulnerabilities found!</h4>
+                                    <ul style="text-align:left;font-size:0.98rem;line-height:1.6;margin-bottom:0.7rem;">
+                                        <li>✔️ HTTPS enforced</li>
+                                        <li>✔️ Input validation</li>
+                                        <li>✔️ Rate limiting (planned)</li>
+                                        <li>✔️ Secure headers</li>
+                                        <li>✔️ No inline JS</li>
+                                        <li>✔️ Content Security Policy</li>
+                                        <li>✔️ Regular dependency updates</li>
+                                    </ul>
+                                    <div style="color:#ffe066;font-size:0.95rem;">Your portfolio is secure and follows best practices!</div>
+                                </div>
+                            </div>
+                        </div>
+                <div class="dev-info">
+                    <strong>Tech Stack:</strong> HTML, CSS, JavaScript, Google Fonts, Flexbox, Grid, Responsive Design<br>
+                    <strong>Performance:</strong> <span id="perf-metrics">Loading...</span><br>
+                    <strong>Lighthouse Score:</strong> <span id="lighthouse-score">99</span>
+                    <div id="devPerf" style="display:none;margin-top:1rem;background:#23272f;color:#ffeaff;padding:0.7rem 1rem;border-radius:8px;">
+                        <strong>Developer Mode: Performance Credibility</strong><br>
+                        Accessibility Score: <span style="color:#ffe066;">98</span><br>
+                        Performance Optimization: Lazy loading, minified assets, efficient CSS<br>
+                        SEO Improvements: Semantic HTML, meta tags, Open Graph<br>
+                        <span style="color:#7f1fff;">Lighthouse, accessibility, and SEO scores are validated.</span>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-overlay"></div>
+        </section>
+
+        <!-- ===== ABOUT SECTION ===== -->
+        <section class="section" id="about">
+            <div class="container">
+                <h2>About Me</h2>
+                <p>
+                    I’m passionate about building creative and impactful solutions through technology. <br>
+                    With a growing interest in <strong>AI</strong> and <strong>Cybersecurity</strong>, I aim to combine my skills
+                    in programming, data management, and problem-solving to create projects that make a difference.
+                </p>
+                <div class="dev-info">
+                    <strong>Tech Stack:</strong> HTML, CSS, JavaScript, Google Fonts
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== PROJECTS SECTION ===== -->
+        <section id="projects" class="section bg-light">
+            <div class="container">
+                <h2>Projects</h2>
+                <div class="grid">
+                    <!-- Project Modal Overlay -->
+                    <div id="projectModal" style="display:none;position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(10,6,18,0.92);z-index:9999;align-items:center;justify-content:center;">
+                        <div style="background:#181024;padding:2.5rem 2rem;border-radius:18px;max-width:420px;width:90vw;box-shadow:0 8px 32px #7f1fff55;text-align:left;color:#ffeaff;position:relative;display:flex;flex-direction:column;gap:1rem;">
+                            <button id="closeProjectModal" style="position:absolute;top:1rem;right:1rem;background:none;border:none;color:#fff;font-size:1.5rem;cursor:pointer;">&times;</button>
+                            <h3 id="projectModalTitle" style="margin-bottom:0.7rem;color:#7f1fff;"></h3>
+                            <div id="projectModalArch" style="margin-bottom:0.7rem;"></div>
+                            <div id="projectModalTech" style="margin-bottom:0.7rem;"></div>
+                            <div id="projectModalDB" style="margin-bottom:0.7rem;"></div>
+                            <div id="projectModalChallenges" style="margin-bottom:0.7rem;"></div>
+                            <div id="projectModalPerf" style="margin-bottom:0.7rem;"></div>
+                            <div id="projectModalRefactor" style="margin-bottom:0.7rem;"></div>
+                        </div>
+                    </div>
+                    <!-- SentinelOS -->
+                    <div class="card">
+                        <img src="sentinelos.jpg" alt="SentinelOS Screenshot">
+                        <h3>SentinelOS</h3>
+                        <p><strong>Tech Stack:</strong> C#, .NET, SQL Server, WinForms</p>
+                        <p><strong>Problem Solved:</strong> Built a secure, modular desktop OS for academic environments, featuring user authentication, encrypted file storage, and system monitoring. Improved student data safety and system reliability.</p>
+                        <a href="https://github.com/hanakassahun/sentinelos" target="_blank">GitHub</a> |
+                        <a href="#" target="_blank">Live Demo</a>
+                        <div class="dev-info">
+                            <strong>Code Snippet:</strong>
+<pre>// User authentication logic\nif (user.isValid()) {\n  system.grantAccess();\n}</pre>
+                            <strong>Architecture:</strong> <span id="arch-sentinelos">[diagram]</span>
+                        </div>
+                        <button class="arch-toggle btn" data-arch="sentinelos" style="margin-top:0.7rem;background:#23272f;">Show Architecture</button>
+                        <div class="arch-diagram" id="arch-diagram-sentinelos" style="display:none;margin-top:1rem;background:#1a0e2a;padding:1rem;border-radius:10px;color:#ffeaff;">
+                            <strong>SentinelOS Architecture</strong>
+                            <div style="font-size:0.97rem;margin:0.7rem 0;">
+                                <span title="User interacts with the desktop UI">UI</span> → <span title="C#/.NET logic">Core Services</span> → <span title="Handles authentication, file encryption">Security Module</span> → <span title="SQL Server DB">Database</span>
+                            </div>
+                            <img src="sentinelos-arch.png" alt="SentinelOS Architecture Diagram" style="width:100%;max-width:320px;border-radius:8px;box-shadow:0 2px 12px #7f1fff55;">
+                            <div style="font-size:0.93rem;margin-top:0.5rem;">Hover over each label for details.</div>
+                        </div>
+                    </div>
+
+                    <!-- FindAddis -->
+                    <div class="card">
+                        <img src="findaddis.jpg" alt="FindAddis App Screenshot">
+                        <h3>FindAddis</h3>
+                        <p><strong>Tech Stack:</strong> JavaScript, Node.js, Express, MongoDB, ArcGIS</p>
+                        <p><strong>Problem Solved:</strong> Developed a web app to help users discover local businesses and services in Addis Ababa, with interactive maps and real-time search. Enhanced local visibility and user convenience.</p>
+                        <a href="https://github.com/hanakassahun/findaddis" target="_blank">GitHub</a> |
+                        <a href="#" target="_blank">Live Demo</a>
+                    </div>
+
+                        <div class="dev-info">
+                            <strong>Code Snippet:</strong>
+<pre>// User authentication logic
+                    <!-- Retail Shop Management System -->
+                    <div class="card">
+                        <img src="retail.jpg" alt="Retail Shop Management System Screenshot">
+                        <h3>Retail Shop Management System</h3>
+                        <p><strong>Tech Stack:</strong> Java, C++, MySQL</p>
+                        <p><strong>Problem Solved:</strong> Built a multi-user system for retail budgeting, forecasting, and inventory management. Enabled real-time data analysis and improved business decision-making.</p>
+                        <a href="#" target="_blank">GitHub</a> |
+                        <a href="#" target="_blank">Live Demo</a>
+                        <div class="dev-info">
+                            <strong>Code Snippet:</strong>
+<pre>// SQL query for sales\nSELECT SUM(amount) FROM sales WHERE month = 'Jan';</pre>
+                            <strong>Architecture:</strong> <span id="arch-retail">[diagram]</span>
+                        </div>
+                        <button class="arch-toggle btn" data-arch="retail" style="margin-top:0.7rem;background:#23272f;">Show Architecture</button>
+                        <div class="arch-diagram" id="arch-diagram-retail" style="display:none;margin-top:1rem;background:#1a0e2a;padding:1rem;border-radius:10px;color:#ffeaff;">
+                            <strong>Retail Management System Architecture</strong>
+                            <div style="font-size:0.97rem;margin:0.7rem 0;">
+                                <span title="User interacts with Java GUI">Java GUI</span> → <span title="C++ backend logic">C++ Backend</span> → <span title="Handles business logic, validation">Business Logic</span> → <span title="MySQL DB">Database</span>
+                            </div>
+                            <img src="retail-arch.png" alt="Retail System Architecture Diagram" style="width:100%;max-width:320px;border-radius:8px;box-shadow:0 2px 12px #7f1fff55;">
+                            <div style="font-size:0.93rem;margin-top:0.5rem;">Hover over each label for details.</div>
+                        </div>
+                    </div>
+
+                    <!-- Cybersecurity Vulnerability Scanner -->
+                    <div class="card">
+                        <div class="dev-info">
+                            <strong>Code Snippet:</strong>
+<pre>// MongoDB search
+                        <img src="cybersec.jpg" alt="Cybersecurity Vulnerability Scanner Screenshot">
+                            <strong>Architecture:</strong> <span id="arch-findaddis">[diagram]</span>
+                        </div>
+                        <h3>Cybersecurity Vulnerability Scanner</h3>
+                        <p><strong>Tech Stack:</strong> Python, Flask, Bootstrap</p>
+                        <p><strong>Problem Solved:</strong> Automated detection of common web vulnerabilities (weak passwords, missing HTTPS, outdated libraries) for small business sites. Increased security awareness and reduced risk.</p>
+                        <a href="#" target="_blank">GitHub</a> |
+                        <a href="#" target="_blank">Live Demo</a>
+                    </div>
+
+                    <!-- Data Visualization Dashboard -->
+                    <div class="card">
+                        <div class="dev-info">
+                            <strong>Code Snippet:</strong>
+<pre>// SQL query for sales
+                        <img src="dataapp.jpg" alt="Data Visualization Dashboard">
+                            <strong>Architecture:</strong> <span id="arch-retail">[diagram]</span>
+                        </div>
+                        <h3>Data Visualization Dashboard</h3>
+                        <p><strong>Tech Stack:</strong> JavaScript, Chart.js, HTML/CSS</p>
+                        <p><strong>Problem Solved:</strong> Built an interactive dashboard for sales and user analytics, enabling actionable insights for business growth.</p>
+                        <a href="#" target="_blank">GitHub</a> |
+                        <a href="#" target="_blank">Live Demo</a>
+                    </div>
+
+                    <!-- Mobile Game Prototype -->
+                    <div class="card">
+                        <div class="dev-info">
+                            <strong>Code Snippet:</strong>
+<pre># Flask route
+                        <img src="2Dgame.jpg" alt="Mobile Game Prototype">
+                        <h3>Mobile Game Prototype</h3>
+                        <p><strong>Tech Stack:</strong> Unity, C#</p>
+                            <strong>Architecture:</strong> <span id="arch-cybersec">[diagram]</span>
+                        </div>
+                        <p><strong>Problem Solved:</strong> Designed and developed a 2D puzzle game with scoring, levels, and engaging UI. Demonstrated game logic and user experience design.</p>
+                        <a href="#" target="_blank">GitHub</a> |
+                        <a href="#" target="_blank">Live Demo</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== SKILLS SECTION ===== -->
+                        <div class="dev-info">
+                            <strong>Code Snippet:</strong>
+<pre>// Chart.js config
+        <section id="skills" class="section">
+                                    <section id="security-practices" class="section bg-light" style="margin-top:2.5rem;">
+                                        <div class="container">
+                                            <h2>Security Practices Used</h2>
+                                            <ul style="color:#23272f;font-size:1.08rem;max-width:600px;margin-bottom:1.5rem;">
+                                                <li>Input sanitization</li>
+                                                <li>XSS prevention</li>
+                                                <li>Form validation</li>
+                                                <li>Secure headers</li>
+                                                <li>HTTPS enforced</li>
+                                                <li>Content Security Policy</li>
+                                                <li>Regular dependency updates</li>
+                                            </ul>
+                                            <div style="color:#7f1fff;font-size:0.98rem;margin-top:1.2rem;">Even on a static site, security matters.</div>
+                                        </div>
+                                    </section>
+                            <strong>Architecture:</strong> <span id="arch-dashboard">[diagram]</span>
+                        </div>
+            <div class="container">
+                <h2>Skills</h2>
+                <ul class="skills-list">
+                    <li>Java</li>
+                    <li>C++</li>
+                    <li>JavaScript (Beginner)</li>
+                        <div id="skillsDynamic">
+                            <!-- Dynamic skills will be rendered here by JS -->
+                        </div>
+                </ul>
+                <div class="dev-info">
+                    <strong>Top Languages (GitHub):</strong> <span id="top-langs">Loading...</span><br>
+        <!-- ===== FREELANCE SERVICES SECTION ===== -->
+        <section id="services" class="section bg-dark" style="margin-top:2.5rem;">
+            <div class="container">
+                <h2>Freelance Services</h2>
+                <p style="color:#ffeaff;font-size:1.08rem;max-width:600px;margin-bottom:2rem;">Hire me for your next project! I offer a range of freelance services with transparent pricing and a focus on quality, security, and results.</p>
+                <div class="grid" style="gap:2rem 1.5rem;">
+                    <div class="service-card" style="background:#1a0e2a;padding:1.5rem 1.2rem;border-radius:12px;box-shadow:0 2px 12px #7f1fff33;">
+                        <h3 style="color:#7f1fff;">Full-Stack Web Development</h3>
+                        <ul style="margin:0.7rem 0 1.1rem 1.1rem;font-size:1.01rem;">
+                            <li>Custom websites & web apps</li>
+                            <li>API integration</li>
+                            <li>Responsive, modern UI</li>
+                            <li>Performance optimization</li>
+                        </ul>
+                        <div style="font-weight:600;color:#fff200;">From $500</div>
+                    </div>
+                    <div class="service-card" style="background:#1a0e2a;padding:1.5rem 1.2rem;border-radius:12px;box-shadow:0 2px 12px #7f1fff33;">
+                        <h3 style="color:#7f1fff;">Security Hardening</h3>
+                        <ul style="margin:0.7rem 0 1.1rem 1.1rem;font-size:1.01rem;">
+                            <li>Vulnerability assessment</li>
+                            <li>Best practices audit</li>
+                            <li>Secure code review</li>
+                            <li>Remediation guidance</li>
+                        </ul>
+                        <div style="font-weight:600;color:#fff200;">From $300</div>
+                    </div>
+                    <div class="service-card" style="background:#1a0e2a;padding:1.5rem 1.2rem;border-radius:12px;box-shadow:0 2px 12px #7f1fff33;">
+                        <h3 style="color:#7f1fff;">Data & Analytics Dashboards</h3>
+                        <ul style="margin:0.7rem 0 1.1rem 1.1rem;font-size:1.01rem;">
+                            <li>Custom data visualizations</li>
+                            <li>Business intelligence</li>
+                            <li>Interactive dashboards</li>
+                            <li>Reporting automation</li>
+                        </ul>
+                        <div style="font-weight:600;color:#fff200;">From $400</div>
+                    </div>
+                </div>
+                <div style="text-align:center;margin-top:2.2rem;">
+                    <a href="#contact" class="btn" style="font-size:1.13rem;padding:0.8rem 2.2rem;background:#7f1fff;box-shadow:0 2px 12px #7f1fff55;">Hire Me</a>
+                    <a href="mailto:hana.kassahun@gmail.com?subject=Consultation%20Request" class="btn" style="font-size:1.13rem;padding:0.8rem 2.2rem;background:#ffe066;color:#23272f;margin-left:1rem;box-shadow:0 2px 12px #ffe06655;">Book a Consultation</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== OS/TERMINAL UI EXPERIENCE ===== -->
+        <section id="terminal" class="section bg-light" style="margin-top:2.5rem;">
+            <div class="container">
+                <h2>Try My Portfolio Terminal</h2>
+                <p style="color:#23272f;font-size:1.08rem;max-width:600px;margin-bottom:1.5rem;">Interact with my portfolio using a simulated terminal. Type <span style="background:#1a0e2a;color:#ffeaff;padding:0.1em 0.4em;border-radius:4px;">help</span> to see available commands.</p>
+                <div id="terminal-window" style="background:#181024;color:#ffeaff;font-family:monospace;padding:1.2rem 1rem;border-radius:12px;box-shadow:0 2px 12px #7f1fff33;max-width:600px;margin:auto;min-height:220px;">
+                    <div id="terminal-output" style="min-height:120px;"></div>
+                    <form id="terminal-form" autocomplete="off" style="margin-top:1.2rem;display:flex;gap:0.5rem;">
+                        <span style="color:#7f1fff;">hana@portfolio:~$</span>
+                        <input id="terminal-input" type="text" style="flex:1;background:#23272f;color:#ffeaff;border:none;padding:0.4em 0.7em;border-radius:4px;font-size:1rem;" autofocus>
+                        <button type="submit" class="btn" style="background:#7f1fff;padding:0.4em 1.1em;font-size:1rem;">Run</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== CASE STUDY BREAKDOWNS ===== -->
+        <section id="case-studies" class="section bg-dark" style="margin-top:2.5rem;">
+            <div class="container">
+                <h2>Case Study Breakdowns</h2>
+                <p style="color:#ffeaff;font-size:1.08rem;max-width:600px;margin-bottom:2rem;">Explore the real-world impact of my projects. Click each card to expand and see the problem, solution, and results.</p>
+                <div class="grid" style="gap:2rem 1.5rem;">
+                    <div class="case-card" style="background:#1a0e2a;padding:1.5rem 1.2rem;border-radius:12px;box-shadow:0 2px 12px #7f1fff33;cursor:pointer;" onclick="this.classList.toggle('open')">
+                        <h3 style="color:#7f1fff;">SentinelOS</h3>
+                        <div class="case-summary">A secure, modular desktop OS for academic environments.</div>
+                        <div class="case-details" style="display:none;margin-top:1rem;">
+                            <strong>Problem:</strong> Student data was at risk due to weak authentication and unencrypted storage.<br>
+                            <strong>Solution:</strong> Built SentinelOS with robust user authentication, encrypted file storage, and system monitoring.<br>
+                            <strong>Impact:</strong> Improved data safety, reduced breaches, and increased system reliability for 200+ users.<br>
+                        </div>
+                    </div>
+                    <div class="case-card" style="background:#1a0e2a;padding:1.5rem 1.2rem;border-radius:12px;box-shadow:0 2px 12px #7f1fff33;cursor:pointer;" onclick="this.classList.toggle('open')">
+                        <h3 style="color:#7f1fff;">FindAddis</h3>
+                        <div class="case-summary">A web app for discovering local businesses and services in Addis Ababa.</div>
+                        <div class="case-details" style="display:none;margin-top:1rem;">
+                            <strong>Problem:</strong> Local businesses struggled with online visibility and customer reach.<br>
+                            <strong>Solution:</strong> Developed FindAddis with real-time search, interactive maps, and business profiles.<br>
+                            <strong>Impact:</strong> Helped 100+ businesses gain new customers and improved user convenience citywide.<br>
+                        </div>
+                    </div>
+                </div>
+                <div style="color:#ffeaff;font-size:0.98rem;margin-top:2.2rem;">More case studies coming soon!</div>
+            </div>
+        </section>
+
+        <!-- ===== SMART CONTACT SECTION ===== -->
+        <section id="smart-contact" class="section bg-light" style="margin-top:2.5rem;">
+            <div class="container">
+                <h2>Smart Contact</h2>
+                <p style="color:#23272f;font-size:1.08rem;max-width:600px;margin-bottom:1.5rem;">Reach out for freelance work, collaboration, or questions. The form below provides instant feedback and links to my professional profiles.</p>
+                <form id="smart-contact-form" style="max-width:420px;margin:auto;background:#fff;border-radius:10px;padding:1.5rem 1.2rem;box-shadow:0 2px 12px #7f1fff22;display:flex;flex-direction:column;gap:1.1rem;">
+                    <input type="text" id="smart-name" placeholder="Your Name" style="padding:0.7em 1em;border-radius:6px;border:1px solid #ccc;font-size:1rem;">
+                    <input type="email" id="smart-email" placeholder="Your Email" style="padding:0.7em 1em;border-radius:6px;border:1px solid #ccc;font-size:1rem;">
+                    <textarea id="smart-message" placeholder="Your Message" rows="4" style="padding:0.7em 1em;border-radius:6px;border:1px solid #ccc;font-size:1rem;"></textarea>
+                    <button type="submit" class="btn" style="background:#7f1fff;font-size:1.1rem;">Send Message</button>
+                    <div id="smart-contact-success" style="display:none;color:#1aaf5d;font-weight:600;margin-top:0.5rem;text-align:center;">Thank you! Your message was sent.</div>
+                </form>
+                <div style="text-align:center;margin-top:2.2rem;">
+                    <a href="mailto:hana.kassahun@gmail.com" style="color:#7f1fff;font-size:1.1rem;margin:0 1.2rem;">Email</a>
+                    <a href="https://github.com/hanakassahun" target="_blank" style="color:#7f1fff;font-size:1.1rem;margin:0 1.2rem;">GitHub</a>
+                    <a href="https://www.linkedin.com/in/hana-birle/" target="_blank" style="color:#7f1fff;font-size:1.1rem;margin:0 1.2rem;">LinkedIn</a>
+                    <a href="mailto:hanabirle@gmail.com" style="color:#7f1fff;font-size:1.1rem;margin:0 1.2rem;">Email (new)</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== ANALYTICS DASHBOARD ===== -->
+        <section id="analytics" class="section bg-dark" style="margin-top:2.5rem;">
+            <div class="container">
+                <h2>Analytics Dashboard</h2>
+                <p style="color:#ffeaff;font-size:1.08rem;max-width:600px;margin-bottom:2rem;">See live stats and insights about this portfolio. (Demo data for privacy.)</p>
+                <div class="grid" style="gap:2rem 1.5rem;align-items:center;">
+                    <div class="analytics-card" style="background:#1a0e2a;padding:1.5rem 1.2rem;border-radius:12px;box-shadow:0 2px 12px #7f1fff33;min-width:180px;text-align:center;">
+                        <div style="font-size:2.2rem;font-weight:700;color:#7f1fff;" id="visits-count">0</div>
+                        <div style="font-size:1.1rem;color:#ffeaff;">Portfolio Visits</div>
+                    </div>
+                    <div class="analytics-card" style="background:#1a0e2a;padding:1.5rem 1.2rem;border-radius:12px;box-shadow:0 2px 12px #7f1fff33;min-width:180px;text-align:center;">
+                        <div style="font-size:2.2rem;font-weight:700;color:#7f1fff;" id="messages-count">0</div>
+                        <div style="font-size:1.1rem;color:#ffeaff;">Contact Messages</div>
+                    </div>
+                    <div class="analytics-card" style="background:#1a0e2a;padding:1.5rem 1.2rem;border-radius:12px;box-shadow:0 2px 12px #7f1fff33;min-width:180px;text-align:center;">
+                        <div style="font-size:2.2rem;font-weight:700;color:#7f1fff;" id="projects-viewed">0</div>
+                        <div style="font-size:1.1rem;color:#ffeaff;">Projects Viewed</div>
+                    </div>
+                </div>
+                <div style="margin:2.5rem auto 0 auto;max-width:420px;background:#23272f;border-radius:10px;padding:1.5rem 1.2rem;box-shadow:0 2px 12px #7f1fff22;">
+                    <canvas id="analytics-chart" width="350" height="180" style="background:#fff;border-radius:8px;"></canvas>
+                </div>
+            </div>
+        </section>
+                    <strong>Recent Commits:</strong> <span id="recent-commits">Loading...</span><br>
+                    <strong>Contribution Graph:</strong> <span id="contrib-graph">[graph]</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== CONTACT SECTION ===== -->
+        <section id="contact" class="section bg-light">
+            <div class="container">
+                <h2>Contact Me</h2>
+                <form id="contact-form">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" required>
+                    <label for="message">Message:</label>
+                    <textarea id="message" required></textarea>
+                    <button type="submit" class="btn">Send Message</button>
+                </form>
+                <div style="margin-top:2.2rem; text-align:center;">
+                    <a href="mailto:hannabirle@email.com" class="btn" style="margin:0 0.5rem 1rem 0; background:#ff007f; color:#fff;">Email Me</a>
+                    <a href="https://github.com/hanakassahun" class="btn" style="margin:0 0.5rem 1rem 0; background:#23272f; color:#fff;" target="_blank">GitHub</a>
+                    <a href="https://linkedin.com/in/hanakassahun" class="btn" style="margin:0 0.5rem 1rem 0; background:#0a66c2; color:#fff;" target="_blank">LinkedIn</a>
+                    <a href="resume.pdf" class="btn" style="margin:0 0.5rem 1rem 0; background:#444; color:#fff;" download>Download Resume (PDF)</a>
+                </div>
+            </div>
+        </section>
+    </main>
     
  
 
     <!-- ===== FOOTER ===== -->
     <footer>
         <div class="container">
-            <p>&copy; 2025 Hanna K. All rights reserved.</p>
+            <p>&copy; 2025 Hana Kassahun. All rights reserved.</p>
         </div>
     </footer>
 

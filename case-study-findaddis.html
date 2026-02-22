@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Case Study: FindAddis | Hana Kassahun</title>
+    <link rel="stylesheet" href="portfolio.css">
+</head>
+<body>
+    <main class="container">
+        <h1 style="color:#7f1fff;margin-top:2rem;">Case Study: FindAddis</h1>
+        <section style="margin-top:2rem;background:#1a0e2a;color:#ffeaff;padding:2rem;border-radius:12px;">
+            <h2>Problem</h2>
+            <p>Local businesses in Addis Ababa struggled with online visibility and customer reach.</p>
+            <h2>Solution</h2>
+            <p>FindAddis was developed with real-time search, interactive maps, and business profiles to enhance local visibility and user convenience.</p>
+            <h2>Architecture</h2>
+            <img src="findaddis-arch.png" alt="FindAddis Architecture" style="width:100%;max-width:320px;border-radius:8px;box-shadow:0 2px 12px #7f1fff55;margin-bottom:1rem;">
+            <ul>
+                <li>JavaScript, Node.js, Express, MongoDB, ArcGIS</li>
+                <li>Interactive map integration</li>
+                <li>Real-time search</li>
+            </ul>
+            <h2>Tech Stack</h2>
+            <ul>
+                <li>JavaScript, Node.js, Express, MongoDB, ArcGIS</li>
+            </ul>
+            <h2>Database Schema</h2>
+            <pre style="background:#23272f;color:#ffeaff;padding:1rem;border-radius:8px;">{
+  business_id: ObjectId,
+  name: String,
+  address: String,
+  category: String,
+  location: { lat: Number, lng: Number },
+  profile: String
+}</pre>
+            <h2>Challenges</h2>
+            <ul>
+                <li>Integrating ArcGIS maps</li>
+                <li>Optimizing real-time search</li>
+                <li>Ensuring data accuracy</li>
+            </ul>
+            <h2>Performance Considerations</h2>
+            <ul>
+                <li>Fast search response</li>
+                <li>Efficient map rendering</li>
+            </ul>
+            <h2>Refactor Ideas</h2>
+            <ul>
+                <li>Improve map UI</li>
+                <li>Expand business categories</li>
+            </ul>
+            <h2>Impact</h2>
+            <p>Helped 100+ businesses gain new customers and improved user convenience citywide.</p>
+        </section>
+    </main>
+</body>
+</html>

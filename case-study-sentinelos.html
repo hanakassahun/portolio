@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Case Study: SentinelOS | Hana Kassahun</title>
+    <link rel="stylesheet" href="portfolio.css">
+</head>
+<body>
+    <main class="container">
+        <h1 style="color:#7f1fff;margin-top:2rem;">Case Study: SentinelOS</h1>
+        <section style="margin-top:2rem;background:#1a0e2a;color:#ffeaff;padding:2rem;border-radius:12px;">
+            <h2>Problem</h2>
+            <p>Student data was at risk due to weak authentication and unencrypted storage. Academic environments needed a secure, modular desktop OS.</p>
+            <h2>Solution</h2>
+            <p>SentinelOS was built with robust user authentication, encrypted file storage, and system monitoring. The architecture prioritized security and reliability.</p>
+            <h2>Architecture</h2>
+            <img src="sentinelos-arch.png" alt="SentinelOS Architecture" style="width:100%;max-width:320px;border-radius:8px;box-shadow:0 2px 12px #7f1fff55;margin-bottom:1rem;">
+            <ul>
+                <li>UI → Core Services → Security Module → Database</li>
+                <li>Encrypted file storage</li>
+                <li>System monitoring</li>
+            </ul>
+            <h2>Tech Stack</h2>
+            <ul>
+                <li>C#, .NET, SQL Server, WinForms</li>
+            </ul>
+            <h2>Database Schema</h2>
+            <pre style="background:#23272f;color:#ffeaff;padding:1rem;border-radius:8px;">CREATE TABLE Users (
+    id INT PRIMARY KEY,
+    username VARCHAR(50),
+    password_hash VARCHAR(255),
+    role VARCHAR(20)
+);
+CREATE TABLE Files (
+    id INT PRIMARY KEY,
+    owner_id INT,
+    filename VARCHAR(100),
+    encrypted_data BLOB
+);</pre>
+            <h2>Challenges</h2>
+            <ul>
+                <li>Ensuring robust encryption</li>
+                <li>Balancing usability and security</li>
+                <li>Handling system monitoring efficiently</li>
+            </ul>
+            <h2>Performance Considerations</h2>
+            <ul>
+                <li>Optimized for academic workloads</li>
+                <li>Low resource usage</li>
+            </ul>
+            <h2>Refactor Ideas</h2>
+            <ul>
+                <li>Upgrade encryption algorithms</li>
+                <li>Improve modularity for plugins</li>
+            </ul>
+            <h2>Impact</h2>
+            <p>Improved data safety, reduced breaches, and increased system reliability for 200+ users.</p>
+        </section>
+    </main>
+</body>
+</html>
